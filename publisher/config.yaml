@@ -1,0 +1,52 @@
+connection:
+  host: gateway
+  port: 1884
+  client_id: random-data-publisher
+  timeout_seconds: 5
+  keep_alive_seconds: 60
+
+discovery:
+  enabled: true
+  prefix: homeassistant
+  device:
+    identifier: mqttsn_simulated_lab
+    name: MQTT-SN Simulated Lab
+    manufacturer: MQTT-SN Lab
+    model: Random Telemetry Publisher
+
+publish:
+  # Publish all configured topics once every N seconds.
+  interval_seconds: 5
+  # Wait this long before retrying after a network/gateway failure.
+  reconnect_delay_seconds: 5
+
+topics:
+  # Binary state: generates exactly 0 or 1 (datatype must be int).
+  - topic: iot/sala/tv/on
+    datatype: int
+    generation:
+      mode: on_off
+
+  # Integer range: both endpoints are inclusive.
+  - topic: iot/sala/tv/volume
+    datatype: int
+    generation:
+      mode: range
+      min: 10
+      max: 100
+
+  # Float range: decimals controls the number of decimal places in the payload.
+  - topic: iot/sala/temperatura
+    datatype: float
+    generation:
+      mode: range
+      min: 18.0
+      max: 30.0
+      decimals: 2
+
+  # Float percentage example.
+  - topic: iot/sala/humidade
+    datatype: float
+    generation:
+      mode: percentage
+      decimals: 1

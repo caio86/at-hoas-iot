@@ -1,0 +1,11 @@
+# MQTT-SN listener and MQTT broker destination.
+mqtt_sn:
+  bind_host: 0.0.0.0
+  bind_port: 1884
+  session_timeout_seconds: 300
+
+mqtt:
+  host: broker
+  port: 1883
+  client_id: mqttsn-gateway
+  keep_alive_seconds: 60
